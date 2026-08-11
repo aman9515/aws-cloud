@@ -1,0 +1,449 @@
+* Overview of Git
+    * What is Git? 
+    * Why Git?
+          * What is Version control System VCS?
+          * Why VCS?
+          * Traditional system: Linux/windows?
+* Types of Version control System
+    * Centralized Version control System
+    * Distributed Version control System
+--------------------------------------------------------------------------------------------------------------
+* Architecture of Git
+* Installation of Git
+* Basic Git commands
+   * git version
+   * git init
+   * git add
+   * git commit
+   * git status
+   * git log
+   * git config
+   * git show
+   * git rm
+--------------------------------------------------------------------------------------------------------------
+* Branches
+* Tags
+--------------------------------------------------------------------------------------------------------------
+* Merge & Rebase
+* Cherry-pick
+--------------------------------------------------------------------------------------------------------------
+* Github Account creation
+--------------------------------------------------------------------------------------------------------------
+* Administration of Github PART-1
+    * Repository creation and deletion
+    * Branch creation and deletion
+    * Tag creation and deletion
+    * Add files and commit changes
+    * List commit and check detailed info about commits
+--------------------------------------------------------------------------------------------------------------
+* Advanced Commands:
+  * git clone
+  * git pull
+  * git push
+  * git fetch
+  * git checkout
+--------------------------------------------------------------------------------------------------------------
+* Remotes
+* Pull Request
+* Fork Mechanism
+--------------------------------------------------------------------------------------------------------------
+* Administration of Github PART-2
+--------------------------------------------------------------------------------------------------------------
+* Stash
+* Revert
+* Reset
+* Clean
+=================================================================================================
+Overview of Git:
+=================================================================================================
+GIT: Global Interaction Tool
+
+Git is an source code management tool which is used for storing the code, important files, automation files etc which uses distributed version control system mechanism which provides proper tracking and also benefit of storage cost optimization.
+
+---------------------------------------------------------------------------
+Why Git ?
+---------------------------------------------------------------------------
+* What is version control system: 
+----------------------------------------
+Version control system(VCS) is an mechanism which provides unique identification for storing the data inside the files using commit_id(SHA key) which uses algorithm "Secure hashing algorithm" which is in the form hexa decimal code 125/256 bytes.
+
+eg: commit_id: zasdf82hfdkd9dh24nkfjf83nf4
+
+----------------------------------------------
+* Why Version control system(VCS):
+----------------------------------------------
+1. Tracking: Proper tracking in Version control system
+         * Who  - each and every user modified details - username & email - capture this info initially.
+         * When - every user modified time & date
+         * What - everything added/deleted/modified
+
+2. Storage cost optimization: Avoid the duplication of the data.
+
+eg: Ecommerce-application:
+
+Login feature:
+  DAY-1: login.java(10 lines) -> 1 GB -> Build and execution -> working fine.
+              Record the changes -> jskdkddnqwdod3rn4rnef3323efefwf
+
+  DAY-2: login.java -> 5 GB -> Build and execution -> working fine.
+              Record the changes -> lkkjhdbdwqwd2212dddedfo9udqd2d
+
+----------------------------------------------
+* Traditional system: Linux/Windows
+----------------------------------------------
+1. Tracking: No proper tracking in Traditional system
+         * Who  - last user modified details - username
+         * When - last user modified time & date
+         * What - we don't know whether added/deleted/modified - ?
+
+2. Storage cost optimization: Avoid the duplication of the data - not possible.
+
+eg: Ecommerce-application:
+
+Login feature:
+  DAY-1: login.java -> 1 GB -> Build and execution -> working fine.
+
+         backup_login.java_day_1 -> 1 GB
+
+  DAY-2: login.java -> 1 GB + 5 GB -> Build and execution -> working fine.
+
+         backup_login.java_day_2 -> 6 GB
+
+  DAY-3: login.java -> 6GB + 10 GB = 16 GB -> Build and execution -> working fine
+
+===================================================================================================
+Types of Version control system:
+===================================================================================================
+1. Centralized version control system:
+
+* no parallel development
+* high changes of data loss
+* online connection - internet connection
+* Licence tool
+ 
+eg: clearcase, SVN etc
+
+----------------------------------------------------------------
+2. Distributed version control system
+
+* parallel development
+* no chances of data loss
+* offline connection - less internet connection
+* open source tools - free trail or version
+                    - subscription - support
+           
+eg: Git, Github, bitbucket etc
+
+=====================================================================================================================
+Architecture of Git:
+=====================================================================================================================
+There are four states for your files to be in when you’re working with Git. These three states 
+are: Working, staging, local and remote 
+
+1. Working Directory: 
+    When you make changes to a file in your working directory, it is then modified, but these modifications 
+are not stored in the codebase. 
+
+2. Staging Area: 
+    When you stage the file, these changes are marked to be saved in the next commit.
+  
+3. Local Repo: 
+      When you commit the file, these changes are finally stored in your codebase. This you have a local 
+repository on your machine, that is your desktop or laptop, which is defined in your working directory 
+
+
+4. Remote Repo: 
+       A remote repository that is stored on the cloud. Eg: Github
+
+=====================================================================================================================
+Installation of Git:
+=====================================================================================================================
+Method-1: Package Manager:
+     * sudo su -
+     * yum install git -y 
+
+Method-2: Gitbash -> https://git-scm.com/install/windows
+
+=====================================================================================================================
+Basic linux commands:
+=====================================================================================================================
+1. How to check version of git?
+   command: git --version
+
+---------------------------------------------------------------------------------------------------------------------
+2. How to initialize the repository?
+   command: git init repository_name
+
+
+Repository: Repository is nothing but an directory which contains functionality to perform git operations.
+
+
+[root@ip-172-31-4-227 ~]# git init devops-repo
+Initialized empty Git repository in /root/devops-repo/.git/
+[root@ip-172-31-4-227 ~]# 
+---------------------------------------------------------------------------------------------------------------------
+3. How to perform git configuration?
+   command: git config --list
+            git config --global user.name "trainercloud"
+            git config --global user.email "trainercloud2023@gmail.com"
+
+---------------------------------------------------------------------------------------------------------------------
+4.  git status: git status is used for checking in which stages the object(file/directory/images etc) is located.
+
+    command: git status
+
+[root@ip-172-31-4-227 devops-repo]# git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+[root@ip-172-31-4-227 devops-repo]# 
+---------------------------------------------------------------------------------------------------------------------
+Lets add our first file:
+
+vi file.txt -> add some content -> :wq
+
+[root@ip-172-31-4-227 devops-repo]# vi file.txt
+[root@ip-172-31-4-227 devops-repo]# git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-4-227 devops-repo]# 
+---------------------------------------------------------------------------------------------------------------------
+5. git add: git add is used for bringing the file to git control by moving file from working directory(untracked area) to staging area(tracked area) for tracking the file
+
+   command: git add file/directory
+            git add file1 file2 file3 file4 dir1 dir2 dir3
+            git add .
+
+[root@ip-172-31-4-227 devops-repo]# git add .
+[root@ip-172-31-4-227 devops-repo]# git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   file.txt
+
+[root@ip-172-31-4-227 devops-repo]# 
+---------------------------------------------------------------------------------------------------------------------
+6. git commit:  git commit is used for recording the changes via commit_id by moving the object from staging area to local repository.
+
+   command: git commit -m "Messages"
+
+
+[root@ip-172-31-4-227 devops-repo]# git commit -m "Adding file.txt"
+[master (root-commit) 2d43714] Adding file.txt
+ 1 file changed, 4 insertions(+)
+ create mode 100644 file.txt
+[root@ip-172-31-4-227 devops-repo]# 
+
+[root@ip-172-31-4-227 devops-repo]# git status
+On branch master
+nothing to commit, working tree clean
+[root@ip-172-31-4-227 devops-repo]# 
+---------------------------------------------------------------------------------------------------------------------
+7. git log: List the commits.
+    
+   command: git log                      // list all the commits with detailed info
+            git log -n1                  // list the latest 1 commit with detailed info
+            git log -n2                  // list the latest 2 commits with detailed info
+            git log --oneline            // list all the commits with short commit_id and messages
+
+---------------------------------------------------------------------------------------------------------------------
+8. How to check detailed info about the commit?
+   command: git show commit_id
+
+[root@ip-172-31-4-227 devops-repo]# git show 2d4371490831c3a2519623d5e0f852b8563d9bb0
+commit 2d4371490831c3a2519623d5e0f852b8563d9bb0 (HEAD -> master)
+Author: trainercloud <trainercloud2023@gmail.com>
+Date:   Tue Aug 4 02:51:03 2026 +0000
+
+    Adding file.txt
+
+diff --git a/file.txt b/file.txt
+new file mode 100644
+index 0000000..08e7942
+--- /dev/null
++++ b/file.txt
+@@ -0,0 +1,4 @@
++GIT: Global Interaction Tool
++
++Git is an source code management tool which is used for storing the code, important files, automation files etc which uses distributed version control system mechanism which provides proper tracking and also benefit of storage cost optimization.
++
+[root@ip-172-31-4-227 devops-repo]# 
+
+output: + Green  - added
+        - Red  - deleted
+        no symbol no color - unchanged
+--------------------------------------------------------------------------------------------------------------------
+9. git rm: git rm is used for removing the files from git control.
+
+   command: git rm file.txt
+            git commit -m "Deleted file.txt"
+
+[root@ip-172-31-4-227 devops-repo]# ls -lrt
+total 4
+-rw-r--r--. 1 root root 299 Aug  4 02:58 file.txt
+[root@ip-172-31-4-227 devops-repo]# git rm file.txt 
+rm 'file.txt'
+[root@ip-172-31-4-227 devops-repo]# ls -lrt
+total 0
+[root@ip-172-31-4-227 devops-repo]# git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    file.txt
+
+[root@ip-172-31-4-227 devops-repo]# git commit -m "Deleted file.txt"
+[master 3dbd093] Deleted file.txt
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 file.txt
+[root@ip-172-31-4-227 devops-repo]#
+
+
+Note: "git restore <file>..." to discard changes in working directory)
+      "git restore --staged <file>..." to unstage
+=====================================================================================================================
+Branches:
+=====================================================================================================================
+Branch is an nothing but an logical directory which contains the object(file/directory/images etc) with associated commits.
+We can create multiple branches and every branch can have unique data.
+
+Ecommerce-application: 
+   * login-page
+   * logout-page
+   * add-to-cart
+   * acknowledgement page 
+   * product catalog
+   * payment method
+
+
+eg: Developers starting developing entire ecommerce-application features:
+     branch -> ecommerce-application
+                      * login-page  - 30 files - 20 commits
+                      * logout-page - 20 files - 10 commits
+                      * add-to-cart - 20 files - 30 commits
+                      * acknowledgement page - 10 files - 5 commits
+                      * product catalog - 50 files - 80 commits
+                      * payment method - 40 files - 60 commits
+
+
+ Testing phase: Payment method was breaking, they want remove entire payment method.
+                challenges: Removing payment method, will ask impact your login and add-to-cart files and commits.
+                            Testing feature wise is not possible
+                            There is no reusability of the code
+
+---------------------------------------------------------------------------------------------------------------------
+Feature wise branches:
+---------------------------------------------------------------------------------------------------------------------
+1. login-page: branch(login-feature) -> login.java -> commits                
+                                        login-password.java -> commits
+                                        login-security.java -> commits
+
+
+2. logout-page: branch(logout-feature) -> logout.java -> commits                
+                                          logout-password.java -> commits
+                                          logout-security.java -> commits
+
+
+.
+.
+.
+.
+.
+Finally combine all the code into final branch -> ecommerce-application and then develop the code and release to customer.
+
+-------------------------------------------------------------------------------------------------------------------
+Standard branches:
+-------------------------------------------------------------------------------------------------------------------
+1. master/main: Master/Main is an unique branch which is created by default at the time of repository creation.
+                Master/Main will always have up-to-date code which is used for customer releases or customer demos.
+                There will be only one master/main branch.
+
+eg: master/main
+
+---------------------------------------------------------------------------------------------------------------------------
+2. develop branch: Develop branch is used for development and testing phase activities.
+                   There will be only one develop branch.
+
+eg: develop
+---------------------------------------------------------------------------------------------------------------------------
+3. release branch: release branch is used for maintaining customer release wise changes for releasing/deploying into specific environments.
+                   There will be multiple release branches.
+
+eg: release, release-Q1, flipkart-release-2026-Q1 etc
+
+----------------------------------------------------------------------------------------------------------------------------
+4. feature branch: feature branch is used for development and testing phase activities where develop branch code is dividing into the feature branches for easy development and testing via small modules.
+                   There will be multiple feature branches.
+
+eg: feature/feature_name, feature/feature_ticket, feature/feature_date etc
+
+----------------------------------------------------------------------------------------------------------------------------
+5. hotfix branch: hotfix branch is used for fixing the live issues reported by customers.
+                  There will be multiple hotfix branches.
+   
+ eg: hotfix/hotfix_name, hotfix/hotfix_ticket, hotfix/hotfix_issue etc
+
+
+Apart from above branches, we can keep any naming convention branches.
+
+------------------------------------------------------------------------------------------------------------------
+Branching Strategy:
+------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------
+commands:
+------------------------------------------------------------------------------------------------------------------
+git branch                      // list local branches
+git branch -a                   // list all local and remote branch
+git branch branch_name          // create branch 
+git checkout branch_name        // switch branch
+git checkout -b branch_name     // create and switch branch
+git branch -D branch_name       // delete an branch
+
+eg: master  M1
+      |
+    develop M1 D1
+       |
+    release M1 D1 R1
+=====================================================================================================================
+Tags:
+=====================================================================================================================
+Tag is an unique identification or bookmark or label which is used for marking the commits as stable point of release.
+
+ eg: v1.0, v1.1, stable-release-Q1, R.10, fix-2026 etc
+
+eg: commit-1
+    commit-2
+    .
+    .
+    .
+    commit-50 - verified-fix, delta-customer-release, fix-Q3 etc
+    . 
+    .
+    .
+    commit-100
+
+commands: git tag  -l                   // list all tags
+          git tag tag_name              // create an tag and assign tag to latest commit
+          git tag tag_name commit_id    // create an tag and assign tag to specific commit
+          git tag -f tag_name commit_id // retag the tag to other commit
+          git tag -d tag_name           // delete an tag
+
+Note: same tag cannot be applied on multiple commits.
+      commit can have multiple tags.
+
+=====================================================================================================================
+Github Account creation:
+====================
