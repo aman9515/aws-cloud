@@ -1,0 +1,24 @@
+s an shortname or alias name of github url
+
+-----------------------------------------------------------------------------------------------------------------------------
+2. git push: git push is used for uploading the updated objects from git local repository branch to github remote repository branch.
+
+  command: git push origin branch_name
+           git push -f origin --tags
+
+[root@ip-172-31-4-227 devops-cloud-work]# git push origin  main
+Username for 'https://github.com': devopscloudtrainer25
+Password for 'https://devopscloudtrainer25@github.com': 
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 273 bytes | 273.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/devopscloudtrainer25/devops-cloud-work.git
+   6b0d48b..f2bda07  main -> main
+[root@ip-172-31-4-227 devops-cloud-work]#
+-----------------------------------------------------------------------------------------------------------------------------
+3. git pull: git pull is used for downloading the updated objects to git local repository branch from github remote repository branch.
+
